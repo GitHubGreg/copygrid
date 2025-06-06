@@ -114,6 +114,39 @@ copygrid/
 - ✅ **E2E testing** - Full application testing
 - 🎯 **Environment**: `VITE_ENABLE_MSW=false`
 
+## 💾 Data Persistence Options
+
+The app offers **three different data persistence behaviors** depending on your needs:
+
+### 1. **Browser Persistence** (Current Default)
+- ✅ **Data persists across page refreshes** using localStorage
+- ✅ **Great for development** - keep your test data while coding
+- ✅ **Perfect for extended demos** - data stays during presentation
+- 🔄 **Reset data**: Clear browser storage or run in console:
+  ```javascript
+  localStorage.removeItem('mockUsers')
+  ```
+
+### 2. **Session-Only Persistence** (Original Behavior)
+- 🔄 **Data resets on every page refresh**
+- ✅ **Always clean state** - perfect for predictable demos
+- ✅ **No cleanup needed** - automatically fresh every time
+- 🔧 **To enable**: Remove localStorage code from `frontend/src/mocks/handlers.ts`
+
+### 3. **Real Database Persistence** (Full-Stack Mode)
+- ✅ **True persistence** - data survives server restarts
+- ✅ **Multi-user support** - shared data across sessions
+- ✅ **Production ready** - real database integration
+- 🎯 **To enable**: Set `VITE_ENABLE_MSW=false` and run `npm run dev:both`
+
+### 🎛️ **Choosing Your Mode**
+
+**For stakeholder demos**: Use session-only (always clean)
+**For development work**: Use browser persistence (keeps test data)
+**For production**: Use real database persistence
+
+**Pro tip**: You can easily switch between modes by modifying the handlers or environment variables!
+
 ## 📜 Available Commands
 
 ### Root Commands (Recommended)
