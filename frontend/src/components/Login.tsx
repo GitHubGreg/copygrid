@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri'
 import { TbCopy } from 'react-icons/tb'
 import { BsStack } from "react-icons/bs";
+import { AuthLayout } from './layouts'
 
 interface LoginProps {
     onLogin: (email: string, password: string) => Promise<boolean>
@@ -25,7 +26,7 @@ export function Login({ onLogin }: LoginProps) {
         try {
             const success = await onLogin(email, password)
             if (success) {
-                navigate('/dashboard')
+                navigate('/copydeck')
             } else {
                 setError('Invalid email or password')
             }
@@ -37,7 +38,7 @@ export function Login({ onLogin }: LoginProps) {
     }
 
     return (
-        <div className="min-h-screen bg-brand-background flex items-center justify-center p-4">
+        <AuthLayout>
             <div className="w-full max-w-md">
                 <div className="bg-brand-surface rounded-2xl p-8 shadow-xl">
                     {/* Logo */}
@@ -145,6 +146,6 @@ export function Login({ onLogin }: LoginProps) {
                     </form>
                 </div>
             </div>
-        </div>
+        </AuthLayout>
     )
 } 

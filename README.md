@@ -19,216 +19,96 @@ This is a **monorepo** containing:
 - 📦 **Monorepo** - Organized workspace structure
 - 🔧 **Modern tooling** - ESLint, TypeScript, PostCSS
 
-## 🔧 Prerequisites: Git Setup
 
-### 📋 What You'll Need
-- A GitHub account (and access to this repository)
-- Terminal/Command Prompt access
-- About 10-15 minutes
+## 🔧 One-time setup
 
-### 🍎 For Mac Users
+### 🍎 Connect GitHub
 
-#### 1. Install Git
-Git comes pre-installed on most modern Macs, but let's ensure you have the latest version:
+ONE TIME SETUP:
 
-**Option A: Using Homebrew (Recommended)**
-```bash
-# Install Homebrew if you don't have it
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Install Git
-brew install git
-```
-
-**Option B: Download from Git website**
-1. Visit [git-scm.com/download/mac](https://git-scm.com/download/mac)
-2. Download and install the latest version
-
-**Verify installation:**
-```bash
+Confirm git is installed by opening Terminal on the Mac and running this (it should show "git version 2.x.x or higher"): 
 git --version
-# Should show: git version 2.x.x or higher
-```
 
-#### 2. Configure Git
-```bash
+Run this in terminal (replacing with your name):
 git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-```
 
-#### 3. Generate SSH Key
-```bash
-# Generate a new SSH key (replace with your GitHub email)
+Run this in terminal (replace with your GitHub email):
+git config --global user.email "your.email@example.com"
+
+Run this in terminal (replace with your GitHub email):
 ssh-keygen -t ed25519 -C "your.email@example.com"
 
-# When prompted for file location, press Enter for default
-# When prompted for passphrase, you can press Enter for no passphrase or create one
+When prompted for file location, press Enter for default
+When prompted for passphrase, you can press Enter for no passphrase
 
-# Start the SSH agent
+Run this in terminal
 eval "$(ssh-agent -s)"
 
-# Add your SSH key to the agent
+Run this in terminal
 ssh-add ~/.ssh/id_ed25519
 
-# Copy your public key to clipboard
+Run this in terminal to copy the key to your clipboard
 pbcopy < ~/.ssh/id_ed25519.pub
-```
 
-### 🪟 For Windows Users
+Sign in to github.com
+Click your profile picture → Settings
+In the left sidebar, click SSH and GPG keys
+Click "New SSH key"
+Add a title (e.g., "My MacBook" or "Work Laptop")
+Paste your key into the "Key" field (it should already be in your clipboard)
+Click "Add SSH key"
 
-#### 1. Install Git
-**Option A: Git for Windows (Recommended)**
-1. Visit [git-scm.com/download/win](https://git-scm.com/download/win)
-2. Download and run the installer
-3. During installation, choose these settings:
-   - ✅ Use Git from the command line and also from 3rd-party software
-   - ✅ Use bundled OpenSSH
-   - ✅ Use the OpenSSL library
-   - ✅ Checkout Windows-style, commit Unix-style line endings
-   - ✅ Use Windows' default console window
-
-**Option B: GitHub Desktop + Git**
-1. Download [GitHub Desktop](https://desktop.github.com/)
-2. This automatically installs Git command line tools
-
-**Verify installation:**
-```bash
-git --version
-# Should show: git version 2.x.x or higher
-```
-
-#### 2. Configure Git
-Open **Git Bash** (or Command Prompt/PowerShell) and run:
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-```
-
-#### 3. Generate SSH Key
-In **Git Bash**:
-```bash
-# Generate a new SSH key (replace with your GitHub email)
-ssh-keygen -t ed25519 -C "your.email@example.com"
-
-# When prompted for file location, press Enter for default
-# When prompted for passphrase, you can press Enter for no passphrase or create one
-
-# Start the SSH agent
-eval "$(ssh-agent -s)"
-
-# Add your SSH key to the agent
-ssh-add ~/.ssh/id_ed25519
-
-# Copy your public key to clipboard
-clip < ~/.ssh/id_ed25519.pub
-```
-
-### 🔑 Add SSH Key to GitHub
-
-1. **Open GitHub** in your browser and sign in
-2. **Click your profile picture** → **Settings**
-3. **In the left sidebar**, click **SSH and GPG keys**
-4. **Click "New SSH key"**
-5. **Add a title** (e.g., "My MacBook" or "Work Laptop")
-6. **Paste your key** into the "Key" field (it should already be in your clipboard)
-7. **Click "Add SSH key"**
-
-### 🧪 Test SSH Connection
-```bash
+Run this in terminal to test your connection
 ssh -T git@github.com
-```
 
 You should see:
-```
 Hi YourUsername! You've successfully authenticated, but GitHub does not provide shell access.
-```
 
-### 📥 Clone the Repository
+Run this in terminal to navigate to where you want the project folder (e.g. Desktop):
+cd ~/Desktop
 
-Now you can clone the CopyGrid repository:
+Run this in terminal to clone the repository:
+git clone git@github.com:GitHubGreg/copygrid.git
 
-```bash
-# Navigate to where you want the project folder
-cd ~/Desktop  # or wherever you keep your projects
-
-# Clone the repository
-git clone git@github.com:your-username/copygrid.git
-
-# Navigate into the project
+Run this in the terminal to navigate into the project
 cd copygrid
-```
 
-**🎉 Success!** You now have the CopyGrid repository on your local machine.
+Run this in terminal to create the environment file (since for safety it isn't part of the code we commit to GitHub)
+echo "VITE_ENABLE_MSW=true" > frontend/.env.development
 
-### 🆘 Troubleshooting Git Setup
+Run this to open this project in Cursor (include the period):
+cursor .
 
-**"Permission denied (publickey)" error:**
-- Make sure you copied the **public** key (`id_ed25519.pub`, not `id_ed25519`)
-- Verify the key was added to GitHub correctly
-- Try: `ssh-add -l` to see if your key is loaded
+If the above doesn't work, you can also just open Cursor and choose "Open Project" and choose that folder
 
-**Git command not found:**
-- **Mac**: Restart Terminal after installation
-- **Windows**: Make sure you're using Git Bash or that Git is in your PATH
+You now have the CopyGrid repository on your local machine and are working on it in Cursor, an excellent AI code editor. You can close Terminal now because Cursor has an integrated one.
 
-**Can't find .ssh folder:**
-- **Mac**: `ls -la ~/.ssh`
-- **Windows**: `ls -la ~/.ssh` (in Git Bash)
-- If it doesn't exist, the `ssh-keygen` command will create it
 
----
+WORKING ON THE APP:
 
-## 🚀 Quick Start
+Once the above one-time setup is done, here is how you can work on the app day to day:
 
-### For New Users (Recommended)
+If not already done, open Cursor and choose the existing copygrid project
 
-1. **Clone and install:**
-   ```bash
-   git clone git@github.com:your-username/copygrid.git
-   cd copygrid
-   npm install
-   ```
+If you don't see Cursor's integrated terminal at the bottom of Cursor, click View > Terminal (or click the icon at the top right corner of Cursor which looks like a square with a bottom white rectangle)
 
-2. **Create environment file:**
-   ```bash
-   echo "VITE_ENABLE_MSW=true" > frontend/.env.development
-   ```
+In Cursor's integrated terminal, type:
+npm run dev
 
-3. **Start the app:**
-   ```bash
-   npm run dev
-   ```
+Run this in terminal to create the environment file (since for safety it isn't part of the code we commit to GitHub)
+echo "VITE_ENABLE_MSW=true" > frontend/.env.development
 
-4. **Open your browser:**
-   - Frontend: http://localhost:5173
-   - Try the user management features!
+Start the app:
+npm run dev
 
-That's it! The app runs completely in the browser with mocked APIs.
+Your app is now running, open the URL http://localhost:5173 in your browser
 
-### For Full-Stack Development
+If you don't see Cursor's integrated chat along the right, click View > Appearance > Secondary sidebar (or click the icon at the top right corner of Cursor which looks like a square with a right white rectangle)
 
-When you're ready to work with the real backend:
+In the chat, type something like "Make all the buttons red" and when it is done, go look at your app, the changes should be made. Back in cursor you can click "Accept all" at the bottom of the chat and these changes will be saved.
 
-1. **Create backend environment:**
-   ```bash
-   echo "PORT=3001
-   FRONTEND_URL=http://localhost:5173" > backend/.env
-   ```
 
-2. **Update frontend environment:**
-   ```bash
-   echo "VITE_ENABLE_MSW=false" > frontend/.env.development
-   ```
 
-3. **Start both frontend and backend:**
-   ```bash
-   npm run dev:both
-   ```
-
-4. **Access the app:**
-   - Frontend: http://localhost:5173 (now using real APIs)
-   - Backend API: http://localhost:3001
-   - API Health: http://localhost:3001/health
 
 ## 📁 Project Structure
 
