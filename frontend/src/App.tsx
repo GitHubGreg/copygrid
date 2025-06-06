@@ -14,7 +14,7 @@ function AppContent() {
       <Route
         path="/login"
         element={
-          user ? <Navigate to="/copydeck" replace /> : <Login onLogin={login} />
+          user ? <Navigate to="/copydeck/tcn" replace /> : <Login onLogin={login} />
         }
       />
       <Route
@@ -26,7 +26,7 @@ function AppContent() {
         }
       />
       <Route
-        path="/copydeck"
+        path="/copydeck/:clientId"
         element={
           <ProtectedRoute>
             <Copydeck />
@@ -34,9 +34,13 @@ function AppContent() {
         }
       />
       <Route
+        path="/copydeck"
+        element={<Navigate to="/copydeck/tcn" replace />}
+      />
+      <Route
         path="/"
         element={
-          user ? <Navigate to="/copydeck" replace /> : <Navigate to="/login" replace />
+          user ? <Navigate to="/copydeck/tcn" replace /> : <Navigate to="/login" replace />
         }
       />
     </Routes>

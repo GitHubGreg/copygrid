@@ -30,11 +30,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             type: 'section',
             title: 'Clients',
             items: [
-                { name: 'Tourisme Côte-Nord - TCN', path: '/copydeck', active: true },
-                { name: 'Musée Lumière', path: '/copydeck' },
-                { name: 'Dermo+', path: '/copydeck' },
-                { name: 'Airborne Agency', path: '/copydeck' },
-                { name: 'Synthwave Studios', path: '/copydeck' }
+                { name: 'Tourisme Côte-Nord - TCN', path: '/copydeck/tcn' },
+                { name: 'Musée Lumière', path: '/copydeck/musee-lumiere' },
+                { name: 'Dermo+', path: '/copydeck/dermo-plus' },
+                { name: 'Airborne Agency', path: '/copydeck/airborne-agency' },
+                { name: 'Synthwave Studios', path: '/copydeck/synthwave-studios' }
             ]
         },
         {
@@ -124,9 +124,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                                                     <Link
                                                         key={itemIndex}
                                                         to={item.path}
-                                                        className={`block px-3 py-2 rounded text-sm transition-colors ${item.active || location.pathname === item.path
-                                                                ? 'bg-brand-primary text-white'
-                                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                                                        className={`block px-3 py-2 rounded text-sm font-medium transition-colors ${location.pathname === item.path
+                                                            ? 'bg-brand-primary text-white !text-white'
+                                                            : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                                                             }`}
                                                     >
                                                         {item.name}
