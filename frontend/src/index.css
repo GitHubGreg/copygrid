@@ -1,3 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Global link styling */
+a {
+    @apply text-indigo-600 hover:text-indigo-500 transition-colors;
+}
+
+/* Ensure visited links maintain the same color */
+a:visited {
+    @apply text-indigo-600;
+}

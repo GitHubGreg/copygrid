@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, Link, useLocation } from 'react-router-dom'
+import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { Login } from './components/Login'
+import { Dashboard } from './components/Dashboard'
+import { ProtectedRoute } from './components/ProtectedRoute'
+import { TbCopy, TbLogout, TbUser } from 'react-icons/tb'
 
 interface User {
   id: number
@@ -95,72 +100,134 @@ function UserList() {
   )
 }
 
-function Home() {
+function PublicHome() {
   return (
     <div className="text-center">
       <h1 className="text-4xl font-bold text-gray-900 mb-4">Welcome to CopyGrid</h1>
       <p className="text-lg text-gray-600 mb-8">
-        A React app with MSW for mocking APIs
+        A modern React app with authentication and user management
       </p>
       <Link
-        to="/users"
+        to="/login"
         className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
       >
-        View Users
+        Get Started
       </Link>
     </div>
   )
 }
 
-function Navigation() {
+function AppContent() {
   const location = useLocation()
+  const { user, login, logout } = useAuth()
 
+  const handleLogout = () => {
+    logout()
+  }
+
+  const isLoginPage = location.pathname === '/login'
+
+  // Full-screen layout for login page
+  if (isLoginPage) {
+    return (
+      <div className="min-h-screen">
+        <Routes>
+          <Route path="/login" element={
+            user ? <Navigate to="/dashboard" replace /> : <Login onLogin={login} />
+          } />
+        </Routes>
+      </div>
+    )
+  }
+
+  // Normal layout with navigation for other pages
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-200 mb-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold text-gray-900">
-              CopyGrid
-            </Link>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link
-              to="/"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === '/'
-                ? 'bg-blue-100 text-blue-700'
-                : 'text-gray-500 hover:text-gray-700'
-                }`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/users"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === '/users'
-                ? 'bg-blue-100 text-blue-700'
-                : 'text-gray-500 hover:text-gray-700'
-                }`}
-            >
-              Users
-            </Link>
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm border-b border-gray-200 mb-8">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center gap-2">
+                <div className="bg-blue-600 p-2 rounded-lg">
+                  <TbCopy className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold text-gray-900">CopyGrid</span>
+              </Link>
+            </div>
+            <div className="flex items-center space-x-4">
+              {user ? (
+                <>
+                  <Link
+                    to="/dashboard"
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === '/dashboard'
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/users"
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === '/users'
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'text-gray-500 hover:text-gray-700'
+                      }`}
+                  >
+                    Users
+                  </Link>
+                  <div className="flex items-center gap-2 text-gray-700">
+                    <TbUser className="w-4 h-4" />
+                    <span className="text-sm">{user.name}</span>
+                  </div>
+                  <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-1 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                  >
+                    <TbLogout className="w-4 h-4" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                >
+                  Sign In
+                </Link>
+              )}
+            </div>
           </div>
         </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <Routes>
+          <Route path="/" element={
+            user ? <Navigate to="/dashboard" replace /> : <PublicHome />
+          } />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/users" element={
+            <ProtectedRoute>
+              <UserList />
+            </ProtectedRoute>
+          } />
+        </Routes>
       </div>
-    </nav>
+    </div>
   )
 }
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/users" element={<UserList />} />
-        </Routes>
-      </div>
-    </div>
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   )
 }
 
