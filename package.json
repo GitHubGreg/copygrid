@@ -1,0 +1,50 @@
+{
+  "name": "copygrid-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CopyGrid - A modern React application with MSW for API mocking",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=frontend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:both": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "build": "npm run build --workspace=frontend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "build:both": "npm run build:backend && npm run build:frontend",
+    "start": "npm run start --workspace=frontend",
+    "start:frontend": "npm run start --workspace=frontend",
+    "start:backend": "npm run start --workspace=backend",
+    "lint": "npm run lint --workspace=frontend && npm run lint --workspace=backend",
+    "install:all": "npm install",
+    "clean": "rm -rf node_modules frontend/node_modules backend/node_modules frontend/dist backend/dist",
+    "postinstall": "echo '\n🎉 Installation complete! Run \"npm run dev\" for frontend only or \"npm run dev:both\" for full-stack development.'"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/copygrid.git"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "vite",
+    "tailwind",
+    "msw",
+    "monorepo",
+    "express",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
