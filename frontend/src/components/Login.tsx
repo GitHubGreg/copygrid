@@ -37,13 +37,13 @@ export function Login({ onLogin }: LoginProps) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-brand-background flex items-center justify-center p-4">
             <div className="w-full max-w-md">
-                <div className="bg-gray-700 rounded-2xl p-8 shadow-xl">
+                <div className="bg-brand-surface rounded-2xl p-8 shadow-xl">
                     {/* Logo */}
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center gap-2 text-white">
-                            <BsStack className="w-8 h-8 text-indigo-600" />
+                            <BsStack className="w-8 h-8 text-brand-primary" />
                             <span className="text-xl font-semibold">CopyGrid</span>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ export function Login({ onLogin }: LoginProps) {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
-                                className="w-full px-4 py-3 bg-gray-600 border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                className="w-full px-4 py-3 bg-brand-input border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
                                 required
                             />
                         </div>
@@ -86,7 +86,7 @@ export function Login({ onLogin }: LoginProps) {
                                 </label>
                                 <Link
                                     to="/forgot-password"
-                                    className="text-sm text-indigo-600 hover:text-indigo-500 transition-colors"
+                                    className="text-sm"
                                 >
                                     Forgot password?
                                 </Link>
@@ -98,7 +98,7 @@ export function Login({ onLogin }: LoginProps) {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="••••••••"
-                                    className="w-full px-4 py-3 bg-gray-600 border border-gray-500 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent pr-12"
+                                    className="w-full px-4 py-3 bg-brand-input border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent pr-12"
                                     required
                                 />
                                 <button
@@ -118,7 +118,7 @@ export function Login({ onLogin }: LoginProps) {
                                 type="checkbox"
                                 checked={rememberMe}
                                 onChange={(e) => setRememberMe(e.target.checked)}
-                                className="w-4 h-4 text-indigo-600 bg-gray-600 border-gray-500 rounded focus:ring-indigo-500 focus:ring-2"
+                                className="w-4 h-4 text-brand-primary bg-brand-input border-gray-600 rounded focus:ring-brand-primary focus:ring-2"
                             />
                             <label htmlFor="remember" className="ml-3 text-sm text-gray-300">
                                 Remember me for 30 days
@@ -129,7 +129,7 @@ export function Login({ onLogin }: LoginProps) {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-800 disabled:cursor-not-allowed text-white font-medium py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-700"
+                            className="w-full bg-brand-primary hover:bg-brand-primary-hover disabled:opacity-75 disabled:cursor-not-allowed text-white font-medium py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 focus:ring-offset-brand-surface"
                         >
                             {loading ? 'Signing in...' : 'Sign in'}
                         </button>
@@ -138,7 +138,7 @@ export function Login({ onLogin }: LoginProps) {
                         <button
                             type="button"
                             onClick={() => navigate('/register')}
-                            className="w-full bg-gray-200 hover:bg-gray-200/80 text-gray-900 font-medium py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-700"
+                            className="w-full bg-brand-secondary hover:bg-brand-secondary-hover text-gray-900 font-medium py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-brand-surface"
                         >
                             Create an account
                         </button>

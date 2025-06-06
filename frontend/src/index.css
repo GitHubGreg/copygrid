@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+    --color-brand-background: #111111;
+    --color-brand-surface: #1D1D1D;
+    --color-brand-primary: #6D28D9;
+    --color-brand-primary-hover: #5B21B6;
+    --color-brand-secondary: #F3F4F6;
+    --color-brand-secondary-hover: #e9eaec;
+    /* Slightly darker than F3F4F6 for hover */
+    --color-brand-input: #2d2d2d;
+}
+
 /* Global link styling */
 a {
-    @apply text-indigo-600 hover:text-indigo-500 transition-colors;
+    @apply text-brand-primary hover:text-brand-primary-hover transition-colors;
 }
 
 /* Ensure visited links maintain the same color */
 a:visited {
-    @apply text-indigo-600;
+    @apply text-brand-primary;
 }
