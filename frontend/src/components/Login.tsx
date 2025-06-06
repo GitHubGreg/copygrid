@@ -10,8 +10,8 @@ interface LoginProps {
 }
 
 export function Login({ onLogin }: LoginProps) {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('demo@copygrid.com')
+    const [password, setPassword] = useState('password')
     const [showPassword, setShowPassword] = useState(false)
     const [rememberMe, setRememberMe] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -144,6 +144,14 @@ export function Login({ onLogin }: LoginProps) {
                             Create an account
                         </button>
                     </form>
+
+                    {/* Development Note */}
+                    <div className="mt-6 p-3 bg-blue-900/20 border border-blue-700 rounded-lg">
+                        <p className="text-xs text-blue-300 text-center">
+                            🚀 Development Mode: Credentials pre-filled<br />
+                            Email: demo@copygrid.com | Password: password
+                        </p>
+                    </div>
                 </div>
             </div>
         </AuthLayout>

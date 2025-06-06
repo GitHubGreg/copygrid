@@ -92,13 +92,7 @@ If not already done, open Cursor and choose the existing copygrid project
 
 If you don't see Cursor's integrated terminal at the bottom of Cursor, click View > Terminal (or click the icon at the top right corner of Cursor which looks like a square with a bottom white rectangle)
 
-In Cursor's integrated terminal, type:
-npm run dev
-
-Run this in terminal to create the environment file (since for safety it isn't part of the code we commit to GitHub)
-echo "VITE_ENABLE_MSW=true" > frontend/.env.development
-
-Start the app:
+Run this in Cursor's integrated terminal:
 npm run dev
 
 Your app is now running, open the URL http://localhost:5173 in your browser
